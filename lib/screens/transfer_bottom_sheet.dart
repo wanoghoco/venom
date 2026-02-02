@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'account_restricted_screen.dart';
 
 class TransferBalanceBottomSheet extends StatefulWidget {
@@ -16,7 +17,7 @@ class _TransferBalanceBottomSheetState
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.85,
+      height: MediaQuery.of(context).size.height * 0.9,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -33,7 +34,7 @@ class _TransferBalanceBottomSheetState
               children: [
                 IconButton(
                   onPressed: () => Navigator.pop(context),
-                  icon: const Icon(Icons.close, size: 28),
+                  icon: const Icon(Icons.close, size: 24, color: Colors.black),
                   padding: EdgeInsets.zero,
                   constraints: const BoxConstraints(),
                 ),
@@ -41,10 +42,14 @@ class _TransferBalanceBottomSheetState
                   child: Text(
                     'Transfer Balance',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Color(0xff1A1A1A),
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
-                const SizedBox(width: 28), // Balance the close button
+                const SizedBox(width: 24), // Balance the close button
               ],
             ),
           ),
@@ -54,7 +59,7 @@ class _TransferBalanceBottomSheetState
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 children: [
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 32),
 
                   // Amount display
                   Row(
@@ -65,22 +70,23 @@ class _TransferBalanceBottomSheetState
                         '\$5,003',
                         style: TextStyle(
                           fontSize: 56,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w400,
                           color: Color(0xFF333333),
                         ),
                       ),
-                      const SizedBox(width: 12),
+                      const SizedBox(width: 8),
                       Container(
+                        height: 20,
                         margin: const EdgeInsets.only(top: 8),
                         padding: const EdgeInsets.all(6),
                         decoration: const BoxDecoration(
-                          color: Color(0xFFE0E0E0),
+                          color: Colors.grey,
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
                           Icons.close,
-                          size: 16,
-                          color: Color(0xFF666666),
+                          size: 8,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -90,126 +96,36 @@ class _TransferBalanceBottomSheetState
 
                   const Text(
                     'Transfer up to \$5,003.00',
-                    style: TextStyle(fontSize: 16, color: Color(0xFF666666)),
+                    style: TextStyle(fontSize: 15, color: Color(0xff1A1A1A)),
                   ),
 
-                  const SizedBox(height: 60),
+                  const SizedBox(height: 38),
 
                   // Transfer type options
                   Row(
                     children: [
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _selectedTransferType = 0;
-                            });
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: _selectedTransferType == 0
-                                    ? const Color(0xFF3D95CE)
-                                    : const Color(0xFFE0E0E0),
-                                width: _selectedTransferType == 0 ? 2 : 1,
-                              ),
-                            ),
-                            child: Column(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(16),
-                                  decoration: const BoxDecoration(
-                                    color: Color(0xFF3D95CE),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: const Icon(
-                                    Icons.flash_on,
-                                    color: Colors.white,
-                                    size: 28,
-                                  ),
-                                ),
-                                const SizedBox(height: 16),
-                                const Text(
-                                  'Instant',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xFF333333),
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                const Text(
-                                  '1.75% fee (max \$25.00)',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    color: Color(0xFF888888),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                      ItemWidget(
+                        asset: "flash",
+                        title: "Instant",
+                        body: '1.75% fee (max \$25.00)',
+                        currentIndex: _selectedTransferType,
+                        index: 1,
+                        onTap: () {
+                          _selectedTransferType = 1;
+                          setState(() {});
+                        },
                       ),
                       const SizedBox(width: 16),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _selectedTransferType = 1;
-                            });
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: _selectedTransferType == 1
-                                    ? const Color(0xFF3D95CE)
-                                    : const Color(0xFFE0E0E0),
-                                width: _selectedTransferType == 1 ? 2 : 1,
-                              ),
-                            ),
-                            child: Column(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(16),
-                                  decoration: const BoxDecoration(
-                                    color: Color(0xFF3D95CE),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: const Icon(
-                                    Icons.account_balance,
-                                    color: Colors.white,
-                                    size: 28,
-                                  ),
-                                ),
-                                const SizedBox(height: 16),
-                                const Text(
-                                  '1-3 biz days',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xFF333333),
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                const Text(
-                                  'NO Fee',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    color: Color(0xFF888888),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                      ItemWidget(
+                        title: "1-3 Biz days",
+                        body: 'No Fee\n',
+                        asset: "bank",
+                        currentIndex: _selectedTransferType,
+                        index: 2,
+                        onTap: () {
+                          _selectedTransferType = 2;
+                          setState(() {});
+                        },
                       ),
                     ],
                   ),
@@ -218,41 +134,40 @@ class _TransferBalanceBottomSheetState
 
                   // Transfer to section
                   Container(
-                    padding: const EdgeInsets.all(16),
+                    padding: EdgeInsets.only(bottom: 12),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF8F8F8),
-                      borderRadius: BorderRadius.circular(12),
+                      border: Border(
+                        bottom: BorderSide(
+                          color: const Color.fromARGB(255, 228, 228, 228),
+                        ),
+                      ),
                     ),
+
                     child: Row(
                       children: [
                         const Text(
                           'Transfer to',
                           style: TextStyle(
+                            fontWeight: FontWeight.w400,
                             fontSize: 16,
                             color: Color(0xFF888888),
                           ),
                         ),
                         const Spacer(),
-                        Container(
-                          width: 24,
-                          height: 24,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFF3D95CE),
-                            borderRadius: BorderRadius.all(Radius.circular(4)),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
+                        Image.asset("assets/bank_card.png", height: 20),
+                        const SizedBox(width: 8),
                         const Text(
                           'Citibank  ++ 1020',
                           style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF333333),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Color.fromARGB(255, 181, 181, 181),
                           ),
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: 4),
                         const Icon(
                           Icons.chevron_right,
+                          fontWeight: FontWeight.w100,
                           color: Color(0xFF888888),
                           size: 24,
                         ),
@@ -279,8 +194,9 @@ class _TransferBalanceBottomSheetState
           ),
 
           // Transfer button
-          Padding(
-            padding: const EdgeInsets.all(24),
+          Container(
+            height: 45,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: ElevatedButton(
               onPressed: () {
                 // Close bottom sheet and navigate to Account Restricted screen
@@ -293,7 +209,7 @@ class _TransferBalanceBottomSheetState
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF3D95CE),
+                backgroundColor: const Color(0xff267ED7),
                 foregroundColor: Colors.white,
                 minimumSize: const Size(double.infinity, 56),
                 shape: RoundedRectangleBorder(
@@ -307,7 +223,75 @@ class _TransferBalanceBottomSheetState
               ),
             ),
           ),
+          Gap(24),
         ],
+      ),
+    );
+  }
+}
+
+class ItemWidget extends StatelessWidget {
+  final int index;
+  final int currentIndex;
+  final Function onTap;
+  final String asset;
+  final String title;
+  final String body;
+  const ItemWidget({
+    super.key,
+    required this.index,
+    required this.currentIndex,
+    required this.onTap,
+    required this.title,
+    required this.body,
+    required this.asset,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          onTap();
+        },
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: index == currentIndex
+                  ? const Color(0xff267ED7)
+                  : const Color(0xFFE0E0E0),
+              width: index == currentIndex ? 2 : 1,
+            ),
+          ),
+          child: Column(
+            children: [
+              Image.asset("assets/$asset.png", height: 45),
+
+              const SizedBox(height: 16),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF333333),
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                body,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF888888),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

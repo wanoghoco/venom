@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:flutter/services.dart';
-=======
-import 'package:get/get.dart';
->>>>>>> refs/remotes/origin/main
+import 'package:gap/gap.dart';
+import 'package:venom/widget/app_textfild.dart';
 import 'main_navigation_screen.dart';
 
 class VenmoLoginScreen extends StatefulWidget {
@@ -18,7 +16,10 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   void _handleLogin() {
-    Get.offAll(MainNavigationScreen());
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const MainNavigationScreen()),
+    );
   }
 
   @override
@@ -32,7 +33,7 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final isSmallScreen = size.width < 375;
-    final padding = size.width * 0.08;
+    final padding = size.width * 0.04;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light.copyWith(
@@ -47,24 +48,20 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
             children: [
               Container(
                 width: double.infinity,
-                height: size.height * 0.25,
+                height: 120,
                 decoration: const BoxDecoration(
                   color: Color(0xFF267ED7),
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.elliptical(500, 80),
-                    bottomRight: Radius.elliptical(500, 80),
+                    bottomLeft: Radius.elliptical(200, 30),
+                    bottomRight: Radius.elliptical(200, 30),
                   ),
                 ),
-                child: Center(
-                  child: Text(
-                    'venmo',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: isSmallScreen ? 48 : 56,
-                      fontWeight: FontWeight.w500,
-                      fontStyle: FontStyle.italic,
-                      letterSpacing: -1,
-                    ),
+                child: SafeArea(
+                  child: Column(
+                    children: [
+                      Gap(20),
+                      Image.asset("assets/venom.png", height: 19),
+                    ],
                   ),
                 ),
               ),
@@ -76,110 +73,40 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
-                      'Email, phone, or username',
-                      style: TextStyle(
-                        color: const Color(0xFF8A8A8A),
-                        fontSize: isSmallScreen ? 14 : 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    TextField(
+                    Gap(size.height * 0.05),
+                    AppTextfild(
                       controller: _usernameController,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: const Color(0xFFF7F7F7),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Color(0xFFE0E0E0),
-                            width: 1,
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Color(0xFFE0E0E0),
-                            width: 1,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Color(0xFF3D95CE),
-                            width: 2,
-                          ),
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 16,
-                        ),
-                      ),
+                      labelText: 'Email, phone, or username',
                     ),
-                    SizedBox(height: size.height * 0.03),
-                    Text(
-                      'Password',
-                      style: TextStyle(
-                        color: const Color(0xFF8A8A8A),
-                        fontSize: isSmallScreen ? 14 : 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    TextField(
+                    Gap(24),
+                    AppTextfild(
                       controller: _passwordController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: const Color(0xFFF7F7F7),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Color(0xFFE0E0E0),
-                            width: 1,
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Color(0xFFE0E0E0),
-                            width: 1,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Color(0xFF3D95CE),
-                            width: 2,
-                          ),
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 16,
-                        ),
-                      ),
+                      labelText: "Password",
                     ),
+
                     SizedBox(height: size.height * 0.04),
-                    ElevatedButton(
-                      onPressed: _handleLogin,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF3D95CE),
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+
+                    InkWell(
+                      onTap: _handleLogin,
+                      child: Container(
+                        height: 44,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color(0xFF267ED7),
                         ),
-                        elevation: 0,
-                      ),
-                      child: Text(
-                        'Log In',
-                        style: TextStyle(
-                          fontSize: isSmallScreen ? 16 : 18,
-                          fontWeight: FontWeight.w600,
+                        child: Center(
+                          child: Text(
+                            'Log In',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ),
                     ),
+
                     SizedBox(height: size.height * 0.025),
                     Center(
                       child: TextButton(
@@ -187,9 +114,9 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
                         child: Text(
                           'Sign up',
                           style: TextStyle(
-                            color: const Color(0xFF3D95CE),
-                            fontSize: isSmallScreen ? 16 : 18,
-                            fontWeight: FontWeight.w600,
+                            color: const Color(0xFF5B8FB7),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),
@@ -201,9 +128,9 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
                         child: Text(
                           'Forgot password?',
                           style: TextStyle(
-                            color: const Color(0xFF3D95CE),
-                            fontSize: isSmallScreen ? 16 : 18,
-                            fontWeight: FontWeight.w600,
+                            color: const Color(0xFF5B8FB7),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),

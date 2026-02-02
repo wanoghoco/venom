@@ -47,7 +47,7 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
             children: [
               Container(
                 width: double.infinity,
-                height: 100,
+                height: 150,
                 decoration: const BoxDecoration(
                   color: Color(0xFF267ED7),
                   borderRadius: BorderRadius.only(

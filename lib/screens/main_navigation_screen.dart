@@ -23,6 +23,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: UniqueKey(),
       body: _screens[_currentIndex],
       bottomNavigationBar: _buildBottomNavBar(),
       floatingActionButton: Container(

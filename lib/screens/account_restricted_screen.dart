@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AccountRestrictedScreen extends StatelessWidget {
   const AccountRestrictedScreen({super.key});
@@ -7,36 +8,33 @@ class AccountRestrictedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light.copyWith(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
           children: [
-            // Blue header with Venmo logo
             Container(
               width: double.infinity,
-              height: size.height * 0.2,
+              height: size.height * 0.15,
               decoration: const BoxDecoration(
-                color: Color(0xFF3D95CE),
+                color: Color(0xFF267ED7),
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.elliptical(500, 60),
                   bottomRight: Radius.elliptical(500, 60),
                 ),
               ),
-              child: Center(
-                child: Text(
-                  'venmo',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: size.width < 375 ? 48 : 56,
-                    fontWeight: FontWeight.w500,
-                    fontStyle: FontStyle.italic,
-                    letterSpacing: -1,
-                  ),
+              child: SafeArea(
+                child: Center(
+                  child: Image.asset("assets/venom.png", height: 19),
                 ),
               ),
             ),
-
+            //SafeArea
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: size.width * 0.08),
@@ -44,54 +42,19 @@ class AccountRestrictedScreen extends StatelessWidget {
                   children: [
                     SizedBox(height: size.height * 0.05),
 
-                    // "Unusual activity detected" text
                     const Text(
                       'Unusual activity detected',
                       style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF333333),
+                        fontSize: 22,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xFF000000),
                       ),
                     ),
 
-                    SizedBox(height: size.height * 0.06),
+                    SizedBox(height: size.height * 0.04),
 
                     // Shield icon
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: const Color(0xFF3D95CE).withOpacity(0.1),
-                      ),
-                      child: Center(
-                        child: Container(
-                          width: 90,
-                          height: 90,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Color(0xFF3D95CE),
-                          ),
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              // Shield background
-                              Icon(
-                                Icons.shield,
-                                size: 70,
-                                color: Colors.white.withOpacity(0.3),
-                              ),
-                              // Exclamation mark
-                              const Icon(
-                                Icons.priority_high,
-                                size: 50,
-                                color: Colors.white,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    Image.asset("assets/accout_blocked.png", height: 96),
 
                     SizedBox(height: size.height * 0.05),
 
@@ -100,37 +63,33 @@ class AccountRestrictedScreen extends StatelessWidget {
                       'Your account\nis restricted',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 32,
+                        fontSize: 30,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF333333),
-                        height: 1.2,
+                        color: Color(0xFF000000),
                       ),
                     ),
 
                     SizedBox(height: size.height * 0.03),
 
                     // Description text
-                    const Text(
+                    Text(
                       'Venmo has temporarily restricted your account. Please check your email for more information or contact our support team.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
-                        color: Color(0xFF666666),
+                        color: Color(0xFF000000).withValues(alpha: 0.6),
                         height: 1.5,
                       ),
                     ),
 
                     const Spacer(),
 
-                    // Contact Support button
                     Padding(
                       padding: EdgeInsets.only(bottom: size.height * 0.05),
                       child: ElevatedButton(
-                        onPressed: () {
-                          // Handle contact support
-                        },
+                        onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF3D95CE),
+                          backgroundColor: const Color(0xFF267ED7),
                           foregroundColor: Colors.white,
                           minimumSize: const Size(double.infinity, 56),
                           shape: RoundedRectangleBorder(
@@ -141,8 +100,8 @@ class AccountRestrictedScreen extends StatelessWidget {
                         child: const Text(
                           'Contact Support',
                           style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),

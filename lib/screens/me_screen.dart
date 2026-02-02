@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gap/gap.dart';
+import 'package:venom/widget/crypto_card.dart';
+import 'package:venom/widget/me_balance_card.dart';
 import 'package:venom/widget/me_screen_action_container.dart';
-import 'transfer_bottom_sheet.dart';
+import 'package:venom/widget/me_selector.dart';
+import 'package:venom/widget/username_widget.dart';
 
-class VenmoMeScreen extends StatelessWidget {
+class VenmoMeScreen extends StatefulWidget {
   const VenmoMeScreen({super.key});
 
-  static void _showTransferBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => const TransferBalanceBottomSheet(),
-    );
-  }
+  @override
+  State<VenmoMeScreen> createState() => _VenmoMeScreenState();
+}
 
+class _VenmoMeScreenState extends State<VenmoMeScreen> {
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -30,382 +31,169 @@ class VenmoMeScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         body: Column(
           children: [
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(
-                horizontal: horizontalPadding,
-                vertical: 20,
-              ),
-              decoration: const BoxDecoration(
-                color: Color(0xFF267ED7),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.elliptical(500, 60),
-                  bottomRight: Radius.elliptical(500, 60),
-                ),
-              ),
-              child: SafeArea(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Stack(
+              alignment: Alignment.center,
+              clipBehavior: Clip.none,
+              children: [
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: horizontalPadding,
+                    vertical: 20,
+                  ),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF267ED7),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.elliptical(500, 60),
+                      bottomRight: Radius.elliptical(500, 60),
+                    ),
+                  ),
+                  child: SafeArea(
+                    bottom: false,
+                    child: Column(
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'Emys Duroseau-Purnell',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                              ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Emys Duroseau-Purnell',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                SizedBox(width: 8),
+                                Image.asset(
+                                  "assets/expand_more.png",
+                                  color: Colors.white,
+                                  height: 5,
+                                ),
+                              ],
                             ),
-                            SizedBox(width: 8),
-                            Image.asset(
-                              "assets/expand_more.png",
+                            Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.asset(
+                                    "assets/not_bell.png",
+                                    color: Color(0xFF267ED7),
+                                    height: 21,
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                Container(
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.asset(
+                                    "assets/setting.png",
+                                    color: Color(0xFF267ED7),
+                                    height: 21,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: const Text(
+                            '@EEDuroseau',
+                            style: TextStyle(
                               color: Colors.white,
-                              height: 5,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
                             ),
-                          ],
+                          ),
                         ),
-                        Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                "assets/not_bell.png",
-                                color: Color(0xFF267ED7),
-                                height: 21,
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                "assets/setting.png",
-                                color: Color(0xFF267ED7),
-                                height: 21,
-                              ),
-                            ),
-                          ],
-                        ),
+                        const SizedBox(height: 40),
                       ],
                     ),
-                    const SizedBox(height: 8),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: const Text(
-                        '@EEDuroseau',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 40),
-                  ],
+                  ),
                 ),
-              ),
+                Positioned(bottom: -60, child: UsernameWidget()),
+              ],
             ),
-
-            // Avatar section
-            Transform.translate(
-              offset: const Offset(0, -60),
-              child: Column(
-                children: [
-                  Container(
-                    width: 120,
-                    height: 120,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 5),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.1),
-                          blurRadius: 10,
-                          offset: const Offset(0, -1),
-                        ),
-                      ],
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'ED',
-                        style: TextStyle(
-                          fontSize: 36,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF666666),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  Transform.translate(
-                    offset: const Offset(44, -40),
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white, width: 5),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.1),
-                            blurRadius: 10,
-                            offset: const Offset(0, 1),
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: Image.asset(
-                          "assets/qr.png",
-                          height: 26,
-                          color: Color(0xFF333333),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SingleChildScrollView(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: horizontalPadding,
-                      ),
-                      child: Column(
+            Gap(size.height * 0.1),
+            Expanded(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.only(top: 0),
+                physics: const BouncingScrollPhysics(),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                  child: Column(
+                    children: [
+                      Row(
                         children: [
-                          Row(
-                            children: [
-                              MeScreenActionContainer(
-                                image: "assets/create_group.png",
-                                text: " 'Create a\ngroup'",
-                              ),
-                            ],
+                          Expanded(
+                            child: MeScreenActionContainer(
+                              image: "assets/create_group.png",
+                              text: "Create a\ngroup",
+                            ),
+                          ),
+                          Gap(20),
+                          Expanded(
+                            child: MeScreenActionContainer(
+                              image: "assets/friends.png",
+                              text: "13 friends",
+                            ),
                           ),
                         ],
                       ),
-                    ),
+                      const SizedBox(height: 24),
+                      Container(
+                        height: 61,
+
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(32),
+                          color: Color(0xffF1F1F1).withValues(alpha: 0.4),
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: MeSelector(
+                                onTap: () {
+                                  setState(() {
+                                    currentIndex = 0;
+                                  });
+                                },
+                                text: "Wallet",
+                                index: 0,
+                                currentIndex: currentIndex,
+                              ),
+                            ),
+                            Expanded(
+                              child: MeSelector(
+                                onTap: () {
+                                  setState(() {
+                                    currentIndex = 1;
+                                  });
+                                },
+                                text: "Transactions",
+                                index: 1,
+                                currentIndex: currentIndex,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      MeBalanceCard(),
+                      const SizedBox(height: 24),
+                      CryptoCard(),
+                    ],
                   ),
-
-                  const SizedBox(height: 32),
-
-                  // Wallet and Transactions tabs
-                  // Container(
-                  //   margin: EdgeInsets.symmetric(horizontal: horizontalPadding),
-                  //   child: Row(
-                  //     children: [
-                  //       Expanded(
-                  //         child: Column(
-                  //           children: [
-                  //             const Text(
-                  //               'Wallet',
-                  //               style: TextStyle(
-                  //                 fontSize: 18,
-                  //                 fontWeight: FontWeight.w600,
-                  //                 color: Color(0xFF333333),
-                  //               ),
-                  //             ),
-                  //             const SizedBox(height: 8),
-                  //             Container(
-                  //               height: 3,
-                  //               decoration: BoxDecoration(
-                  //                 color: const Color(0xFF3D95CE),
-                  //                 borderRadius: BorderRadius.circular(2),
-                  //               ),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //       Expanded(
-                  //         child: const Text(
-                  //           'Transactions',
-                  //           textAlign: TextAlign.center,
-                  //           style: TextStyle(
-                  //             fontSize: 18,
-                  //             fontWeight: FontWeight.w400,
-                  //             color: Color(0xFF999999),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-
-                  //   const SizedBox(height: 24),
-
-                  //   // Balance card
-                  //   Container(
-                  //     margin: EdgeInsets.symmetric(horizontal: horizontalPadding),
-                  //     padding: const EdgeInsets.all(24),
-                  //     decoration: BoxDecoration(
-                  //       color: Colors.white,
-                  //       borderRadius: BorderRadius.circular(16),
-                  //       border: Border.all(
-                  //         color: const Color(0xFFE0E0E0),
-                  //         width: 1,
-                  //       ),
-                  //     ),
-                  //     child: Column(
-                  //       crossAxisAlignment: CrossAxisAlignment.start,
-                  //       children: [
-                  //         Row(
-                  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //           children: const [
-                  //             Text(
-                  //               'Balance',
-                  //               style: TextStyle(
-                  //                 fontSize: 18,
-                  //                 fontWeight: FontWeight.w600,
-                  //                 color: Color(0xFF333333),
-                  //               ),
-                  //             ),
-                  //             Row(
-                  //               children: [
-                  //                 Text(
-                  //                   'Account & Routing',
-                  //                   style: TextStyle(
-                  //                     fontSize: 14,
-                  //                     color: Color(0xFF888888),
-                  //                   ),
-                  //                 ),
-                  //                 SizedBox(width: 8),
-                  //                 Icon(
-                  //                   Icons.visibility,
-                  //                   size: 20,
-                  //                   color: Color(0xFF888888),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //           ],
-                  //         ),
-                  //         const SizedBox(height: 16),
-                  //         const Text(
-                  //           '\$5,003',
-                  //           style: TextStyle(
-                  //             fontSize: 48,
-                  //             fontWeight: FontWeight.w600,
-                  //             color: Color(0xFF333333),
-                  //           ),
-                  //         ),
-                  //         const SizedBox(height: 20),
-                  //         Row(
-                  //           children: [
-                  //             Expanded(
-                  //               child: OutlinedButton(
-                  //                 onPressed: () {
-                  //                   VenmoMeScreen._showTransferBottomSheet(
-                  //                     context,
-                  //                   );
-                  //                 },
-                  //                 style: OutlinedButton.styleFrom(
-                  //                   padding: const EdgeInsets.symmetric(
-                  //                     vertical: 14,
-                  //                   ),
-                  //                   side: const BorderSide(
-                  //                     color: Color(0xFF3D95CE),
-                  //                     width: 2,
-                  //                   ),
-                  //                   shape: RoundedRectangleBorder(
-                  //                     borderRadius: BorderRadius.circular(25),
-                  //                   ),
-                  //                 ),
-                  //                 child: const Text(
-                  //                   'Transfer',
-                  //                   style: TextStyle(
-                  //                     fontSize: 16,
-                  //                     fontWeight: FontWeight.w600,
-                  //                     color: Color(0xFF3D95CE),
-                  //                   ),
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //             const SizedBox(width: 12),
-                  //             Expanded(
-                  //               child: ElevatedButton(
-                  //                 onPressed: () {},
-                  //                 style: ElevatedButton.styleFrom(
-                  //                   backgroundColor: const Color(0xFF3D95CE),
-                  //                   padding: const EdgeInsets.symmetric(
-                  //                     vertical: 14,
-                  //                   ),
-                  //                   shape: RoundedRectangleBorder(
-                  //                     borderRadius: BorderRadius.circular(25),
-                  //                   ),
-                  //                   elevation: 0,
-                  //                 ),
-                  //                 child: const Text(
-                  //                   'Add money',
-                  //                   style: TextStyle(
-                  //                     fontSize: 16,
-                  //                     fontWeight: FontWeight.w600,
-                  //                     color: Colors.white,
-                  //                   ),
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-
-                  //   const SizedBox(height: 24),
-
-                  //   // Crypto card
-                  //   Container(
-                  //     margin: EdgeInsets.symmetric(horizontal: horizontalPadding),
-                  //     padding: const EdgeInsets.all(24),
-                  //     decoration: BoxDecoration(
-                  //       color: Colors.white,
-                  //       borderRadius: BorderRadius.circular(16),
-                  //       border: Border.all(
-                  //         color: const Color(0xFFE0E0E0),
-                  //         width: 1,
-                  //       ),
-                  //     ),
-                  //     child: Row(
-                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //       children: const [
-                  //         Column(
-                  //           crossAxisAlignment: CrossAxisAlignment.start,
-                  //           children: [
-                  //             Text(
-                  //               'Crypto',
-                  //               style: TextStyle(
-                  //                 fontSize: 18,
-                  //                 fontWeight: FontWeight.w600,
-                  //                 color: Color(0xFF333333),
-                  //               ),
-                  //             ),
-                  //             SizedBox(height: 8),
-                  //             Text(
-                  //               '\$0',
-                  //               style: TextStyle(
-                  //                 fontSize: 32,
-                  //                 fontWeight: FontWeight.w600,
-                  //                 color: Color(0xFF333333),
-                  //               ),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //         Icon(
-                  //           Icons.arrow_forward_ios,
-                  //           color: Color(0xFF888888),
-                  //           size: 20,
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-
-                  //   const SizedBox(height: 100),
-                ],
+                ),
               ),
             ),
           ],

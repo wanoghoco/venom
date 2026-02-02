@@ -19,7 +19,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     const VenmoCardsScreen(),
     const VenmoPayRequestScreen(),
     const VenmoCryptoScreen(),
-    const VenmoMeScreen(),
+    VenmoMeScreen(),
   ];
 
   @override

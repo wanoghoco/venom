@@ -13,13 +13,14 @@ class MeScreenActionContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: BoxConstraints(minHeight: 170, maxHeight: 180),
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(17),
         border: Border.all(
           color: const Color(0xFF1A1A1A).withValues(alpha: 0.17),
-          width: 1.5,
+          width: 2,
         ),
       ),
       child: Column(
@@ -30,9 +31,9 @@ class MeScreenActionContainer extends StatelessWidget {
             text,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF3D95CE),
+              fontSize: 21,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF3D7FDD),
               height: 1.3,
             ),
           ),

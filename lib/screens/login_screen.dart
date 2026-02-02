@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'main_navigation_screen.dart';
 
 class VenmoLoginScreen extends StatefulWidget {
@@ -13,10 +14,7 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   void _handleLogin() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const MainNavigationScreen()),
-    );
+    Get.offAll(MainNavigationScreen());
   }
 
   @override

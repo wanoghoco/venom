@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'main_navigation_screen.dart';
 
 class VenmoLoginScreen extends StatefulWidget {
@@ -32,17 +33,22 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
     final isSmallScreen = size.width < 375;
     final padding = size.width * 0.08;
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light.copyWith(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
           child: Column(
             children: [
               Container(
                 width: double.infinity,
                 height: size.height * 0.25,
                 decoration: const BoxDecoration(
-                  color: Color(0xFF3D95CE),
+                  color: Color(0xFF267ED7),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.elliptical(500, 80),
                     bottomRight: Radius.elliptical(500, 80),

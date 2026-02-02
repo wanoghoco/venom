@@ -47,7 +47,7 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
             children: [
               Container(
                 width: double.infinity,
-                height: 120,
+                height: 100,
                 decoration: const BoxDecoration(
                   color: Color(0xFF267ED7),
                   borderRadius: BorderRadius.only(
@@ -58,8 +58,8 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
                 child: SafeArea(
                   child: Column(
                     children: [
-                      Gap(20),
-                      Image.asset("assets/venom.png", height: 19),
+                      Gap(38),
+                      Image.asset("assets/venom.png", height: 16),
                     ],
                   ),
                 ),

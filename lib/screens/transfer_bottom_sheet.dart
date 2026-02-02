@@ -50,7 +50,7 @@ class _TransferBalanceBottomSheetState
                     ),
                   ),
                 ),
-                const SizedBox(width: 28), // Balance the close button
+                const SizedBox(width: 24), // Balance the close button
               ],
             ),
           ),
@@ -60,7 +60,7 @@ class _TransferBalanceBottomSheetState
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 children: [
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 32),
 
                   CurrencyInputField(autofocus: true),
                   const SizedBox(height: 12),
@@ -70,7 +70,7 @@ class _TransferBalanceBottomSheetState
                     style: TextStyle(fontSize: 15, color: Color(0xFF1A1A1A)),
                   ),
 
-                  const SizedBox(height: 60),
+                  const SizedBox(height: 38),
 
                   Row(
                     children: [
@@ -110,41 +110,40 @@ class _TransferBalanceBottomSheetState
 
                   // Transfer to section
                   Container(
-                    padding: const EdgeInsets.all(16),
+                    padding: EdgeInsets.only(bottom: 12),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF8F8F8),
-                      borderRadius: BorderRadius.circular(12),
+                      border: Border(
+                        bottom: BorderSide(
+                          color: const Color.fromARGB(255, 228, 228, 228),
+                        ),
+                      ),
                     ),
+
                     child: Row(
                       children: [
                         const Text(
                           'Transfer to',
                           style: TextStyle(
+                            fontWeight: FontWeight.w400,
                             fontSize: 16,
                             color: Color(0xFF888888),
                           ),
                         ),
                         const Spacer(),
-                        Container(
-                          width: 24,
-                          height: 24,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFF3D95CE),
-                            borderRadius: BorderRadius.all(Radius.circular(4)),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
+                        Image.asset("assets/bank_card.png", height: 20),
+                        const SizedBox(width: 8),
                         const Text(
                           'Citibank  ++ 1020',
                           style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF333333),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Color.fromARGB(255, 181, 181, 181),
                           ),
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: 4),
                         const Icon(
                           Icons.chevron_right,
+                          fontWeight: FontWeight.w100,
                           color: Color(0xFF888888),
                           size: 24,
                         ),
@@ -198,6 +197,73 @@ class _TransferBalanceBottomSheetState
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ItemWidget extends StatelessWidget {
+  final int index;
+  final int currentIndex;
+  final Function onTap;
+  final String asset;
+  final String title;
+  final String body;
+  const ItemWidget({
+    super.key,
+    required this.index,
+    required this.currentIndex,
+    required this.onTap,
+    required this.title,
+    required this.body,
+    required this.asset,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          onTap();
+        },
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: index == currentIndex
+                  ? const Color(0xff267ED7)
+                  : const Color(0xFFE0E0E0),
+              width: index == currentIndex ? 2 : 1,
+            ),
+          ),
+          child: Column(
+            children: [
+              Image.asset("assets/$asset.png", height: 45),
+
+              const SizedBox(height: 16),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF333333),
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                body,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF888888),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

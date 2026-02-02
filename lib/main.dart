@@ -15,7 +15,7 @@ class VenmoApp extends StatelessWidget {
       title: 'Venmo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: const Color(0xFF3D95CE),
+        primaryColor: const Color(0xff297DD7),
         fontFamily: 'SF Pro Display',
       ),
       home: const SplashScreen(),
@@ -39,7 +39,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Color(0xff297DD7));
+    return Scaffold(
+      backgroundColor: Color(0xff297DD7),
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [Image.asset("assets/venom.png", height: 24)],
+        ),
+      ),
+    );
   }
 
   void decideScreen() async {

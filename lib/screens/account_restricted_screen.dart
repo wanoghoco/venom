@@ -87,7 +87,9 @@ class AccountRestrictedScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(bottom: size.height * 0.05),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF267ED7),
                           foregroundColor: Colors.white,

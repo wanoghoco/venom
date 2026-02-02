@@ -19,7 +19,7 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
   void _handleLogin() async {
     showDialog(
       barrierDismissible: false,
-      barrierColor: Colors.black.withValues(alpha: 0.9),
+      barrierColor: Colors.black.withValues(alpha: 0.8),
       context: context,
       builder: (context) => AppAnimatedLoader(),
     );

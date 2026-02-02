@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
+import 'package:venom/widget/app_animated_loader.dart';
 import 'package:venom/widget/app_textfild.dart';
 import 'main_navigation_screen.dart';
 
@@ -15,11 +16,20 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void _handleLogin() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const MainNavigationScreen()),
+  void _handleLogin() async {
+    showDialog(
+      barrierDismissible: false,
+      barrierColor: Colors.black.withValues(alpha: 0.9),
+      context: context,
+      builder: (context) => AppAnimatedLoader(),
     );
+    await Future.delayed(Duration(seconds: 3));
+    if (mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const MainNavigationScreen()),
+      );
+    }
   }
 
   @override

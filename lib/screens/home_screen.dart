@@ -9,6 +9,10 @@ class VenmoHomeScreen extends StatelessWidget {
     final horizontalPadding = size.width * 0.05;
 
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.zero,
+        child: AppBar(backgroundColor: Colors.white),
+      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(

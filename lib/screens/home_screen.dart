@@ -31,19 +31,20 @@ class VenmoHomeScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(25),
                       ),
                       child: Row(
-                        children: const [
-                          Icon(
-                            Icons.search,
-                            color: Color(0xFF666666),
-                            size: 24,
+                        children: [
+                          Image.asset(
+                            "assets/search_icon.png",
+                            color: Color(0xff364153),
+                            height: 17,
+                            width: 17,
                           ),
                           SizedBox(width: 12),
                           Text(
                             'Find a person or busines',
                             style: TextStyle(
-                              color: Color(0xFF888888),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
+                              color: Colors.black.withValues(alpha: 0.5),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ],
@@ -51,94 +52,21 @@ class VenmoHomeScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 16),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: const Icon(Icons.qr_code_scanner, size: 28),
-                  ),
+                  Image.asset("assets/home_scan.png", height: 44, width: 44),
                 ],
               ),
             ),
+            Padding(
+              padding: EdgeInsetsGeometry.symmetric(
+                horizontal: horizontalPadding,
+              ),
+              child: Image.asset("assets/home_disp.png"),
+            ),
+            SizedBox(height: 12),
             Expanded(
               child: ListView(
                 padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                 children: [
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 24),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.08),
-                          blurRadius: 12,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 5,
-                          child: Padding(
-                            padding: const EdgeInsets.all(24),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Choose Venmo at checkout—no card details necessary.',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                    height: 1.3,
-                                  ),
-                                ),
-                                const SizedBox(height: 20),
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: const Color(0xFF3D95CE),
-                                    foregroundColor: Colors.white,
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 32,
-                                      vertical: 14,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25),
-                                    ),
-                                    elevation: 0,
-                                  ),
-                                  child: const Text(
-                                    'Check it out',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 4,
-                          child: Container(
-                            height: 200,
-                            decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [Color(0xFF3DCCF5), Color(0xFF8DDB5E)],
-                              ),
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(16),
-                                bottomRight: Radius.circular(16),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                   _buildTransactionItem(
                     name: 'Lisa Forsyth paid you',
                     time: '3m',
@@ -153,6 +81,35 @@ class VenmoHomeScreen extends StatelessWidget {
                     amount: '+\$500.00',
                     isPositive: true,
                   ),
+                  _buildTransactionItem(
+                    name: 'Lisa Forsyth paid you',
+                    time: '5m',
+                    description: 'Mark Adams 2',
+                    amount: '+\$500.00',
+                    isPositive: true,
+                  ),
+                  _buildTransactionItem(
+                    name: 'Lisa Forsyth paid you',
+                    time: '5m',
+                    description: 'Mark Adams 2',
+                    amount: '+\$500.00',
+                    isPositive: true,
+                  ),
+                  _buildTransactionItem(
+                    name: 'Lisa Forsyth paid you',
+                    time: '5m',
+                    description: 'Mark Adams 2',
+                    amount: '+\$500.00',
+                    isPositive: true,
+                  ),
+                  _buildTransactionItem(
+                    name: 'Lisa Forsyth paid you',
+                    time: '5m',
+                    description: 'Mark Adams 2',
+                    amount: '+\$500.00',
+                    isPositive: true,
+                  ),
+
                   const SizedBox(height: 80),
                 ],
               ),
@@ -173,18 +130,14 @@ class VenmoHomeScreen extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.symmetric(vertical: 12),
-      decoration: const BoxDecoration(
-        border: Border(bottom: BorderSide(color: Color(0xFFEEEEEE))),
-      ),
+      decoration: const BoxDecoration(),
       child: Row(
         children: [
           Container(
             width: 48,
             height: 48,
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              shape: BoxShape.circle,
-            ),
+            decoration: BoxDecoration(shape: BoxShape.circle),
+            child: Image.asset("assets/user.png"),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -197,35 +150,54 @@ class VenmoHomeScreen extends StatelessWidget {
                     Text(
                       name,
                       style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
                     Text(
                       amount,
                       style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
                         color: isPositive
-                            ? const Color(0xFF4CAF50)
+                            ? const Color(0xff68AD5E)
                             : const Color(0xFFE53935),
                       ),
                     ),
                   ],
                 ),
-                Text(
-                  '$time. Private transaction',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Color(0xFF888888),
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      '$time. Private transaction',
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xff6A7282),
+                      ),
+                    ),
+                    SizedBox(width: 12),
+                    Image.asset("assets/pad.png", height: 14),
+                  ],
                 ),
                 Text(
                   description,
                   style: const TextStyle(
                     fontSize: 14,
-                    color: Color(0xFF333333),
+
+                    color: Color(0xff474343),
                   ),
+                ),
+                SizedBox(height: 12),
+                Row(
+                  children: [
+                    Image.asset("assets/love.png", height: 21),
+                    SizedBox(width: 24),
+                    Image.asset("assets/chat.png", height: 21),
+
+                    Spacer(),
+                    Image.asset("assets/more_icon.png", height: 26),
+                  ],
                 ),
               ],
             ),

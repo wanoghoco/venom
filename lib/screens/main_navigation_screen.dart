@@ -78,11 +78,11 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildNavItem(Icons.home, 'Home', 0),
-              _buildNavItem(Icons.credit_card, 'Cards', 1),
+              _buildNavItem("home", 'Home', 0, size: 19),
+              _buildNavItem("card", 'Cards', 1, size: 15),
               const SizedBox(width: 40),
-              _buildNavItem(Icons.currency_bitcoin, 'Crypto', 3),
-              _buildNavItem(Icons.person_outline, 'Me', 4),
+              _buildNavItem("crypto", 'Crypto', 3, size: 26),
+              _buildNavItem("me", 'Me', 4, size: 26),
             ],
           ),
         ),
@@ -90,8 +90,12 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     );
   }
 
-  Widget _buildNavItem(IconData icon, String label, int index) {
-    final isActive = _currentIndex == index;
+  Widget _buildNavItem(
+    String asset,
+    String label,
+    int index, {
+    double size = 20,
+  }) {
     return InkWell(
       onTap: () {
         setState(() {
@@ -101,20 +105,15 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            icon,
-            color: isActive ? const Color(0xFF1E5FD7) : const Color(0xFF888888),
-            size: 28,
-          ),
-          const SizedBox(height: 4),
+          Image.asset("assets/$asset.png", height: size),
+          const SizedBox(height: 6),
           Text(
             label,
             style: TextStyle(
               fontSize: 11,
-              color: isActive
-                  ? const Color(0xFF1E5FD7)
-                  : const Color(0xFF888888),
-              fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
+              color: const Color(0xFF1E5FD7),
+
+              fontWeight: FontWeight.w400,
             ),
           ),
         ],

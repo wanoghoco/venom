@@ -73,45 +73,68 @@ class VenmoHomeScreen extends StatelessWidget {
                 children: [
                   _buildTransactionItem(
                     name: 'Lisa Forsyth paid you',
-                    time: '3m',
+                    time: '18h',
+                    description: 'Mark Adams 2',
+                    amount: '+\$500.00',
+                    isPositive: true,
+                  ),
+                  _buildTransactionItem(
+                    name: 'Lisa Forsyth paid you',
+                    time: '18h',
+                    description: 'Mark Adams',
+                    amount: '+\$500.00',
+                    isPositive: true,
+                  ),
+                  _buildTransactionItem(
+                    name: 'Judy Grey paid you  +2000',
+                    time: '18h',
+                    description: 'Judith M',
+                    amount: '+\$500.00',
+                    isPositive: true,
+                  ),
+                  _buildTransactionItem(
+                    name: 'Lisa Forsyth paid you',
+                    time: '18h',
+                    description: 'Mark Adams',
+                    amount: '+\$500.00',
+                    isPositive: true,
+                  ),
+                  _buildTransactionItem(
+                    name: 'Lisa Forsyth paid you',
+                    time: '18h',
+                    description: 'Mark Adams 4',
+                    amount: '+\$500.00',
+                    isPositive: true,
+                  ),
+                  _buildTransactionItem(
+                    name: 'Lisa Forsyth paid you',
+                    time: '18h',
                     description: 'Mark Adams 3',
                     amount: '+\$500.00',
                     isPositive: true,
                   ),
                   _buildTransactionItem(
                     name: 'Lisa Forsyth paid you',
-                    time: '5m',
-                    description: 'Mark Adams 2',
+                    time: '18h',
+                    description: 'Mark Adams2',
                     amount: '+\$500.00',
                     isPositive: true,
                   ),
                   _buildTransactionItem(
-                    name: 'Lisa Forsyth paid you',
-                    time: '5m',
-                    description: 'Mark Adams 2',
+                    initial: "MA",
+                    name: 'Transfer to Mac Adams',
+                    time: '19h',
+                    description: 'Mark Adams',
                     amount: '+\$500.00',
                     isPositive: true,
                   ),
+
                   _buildTransactionItem(
-                    name: 'Lisa Forsyth paid you',
-                    time: '5m',
-                    description: 'Mark Adams 2',
-                    amount: '+\$500.00',
-                    isPositive: true,
-                  ),
-                  _buildTransactionItem(
-                    name: 'Lisa Forsyth paid you',
-                    time: '5m',
-                    description: 'Mark Adams 2',
-                    amount: '+\$500.00',
-                    isPositive: true,
-                  ),
-                  _buildTransactionItem(
-                    name: 'Lisa Forsyth paid you',
-                    time: '5m',
-                    description: 'Mark Adams 2',
-                    amount: '+\$500.00',
-                    isPositive: true,
+                    name: 'You paid Lisa Forsyth',
+                    time: '3d',
+                    description: 'Return',
+                    amount: '-\$1000.00',
+                    isPositive: false,
                   ),
 
                   const SizedBox(height: 80),
@@ -130,19 +153,34 @@ class VenmoHomeScreen extends StatelessWidget {
     required String description,
     required String amount,
     required bool isPositive,
+    String? initial,
   }) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.symmetric(vertical: 12),
       decoration: const BoxDecoration(),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(shape: BoxShape.circle),
-            child: Image.asset("assets/user.png"),
-          ),
+          if (initial == null) ...[
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(shape: BoxShape.circle),
+              child: Image.asset("assets/user.png"),
+            ),
+          ] else ...[
+            Container(
+              alignment: Alignment.center,
+              height: 48,
+              width: 48,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.black.withOpacity(0.35)),
+              ),
+              child: Text(initial),
+            ),
+          ],
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -155,7 +193,7 @@ class VenmoHomeScreen extends StatelessWidget {
                       name,
                       style: const TextStyle(
                         fontSize: 14,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     Text(

@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'me_screen.dart';
@@ -27,11 +29,18 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       body: _screens[_currentIndex],
       bottomNavigationBar: _buildBottomNavBar(),
       floatingActionButton: Container(
-        width: 65,
-        height: 65,
-        decoration: const BoxDecoration(
-          color: Color(0xFF1E5FD7),
+        width: 74,
+        height: 74,
+        decoration: BoxDecoration(
           shape: BoxShape.circle,
+          color: Colors.white.withOpacity(0.1),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 8,
+              offset: Offset(0, -2),
+            ),
+          ],
         ),
         child: InkWell(
           onTap: () {
@@ -40,16 +49,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             });
           },
           customBorder: const CircleBorder(),
-          child: const Center(
-            child: Text(
-              'V',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 32,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
+          child: Center(child: Image.asset("assets/main_dash.png")),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

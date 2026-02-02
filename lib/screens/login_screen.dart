@@ -32,7 +32,6 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final isSmallScreen = size.width < 375;
     final padding = size.width * 0.04;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(

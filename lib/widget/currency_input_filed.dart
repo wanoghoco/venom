@@ -9,7 +9,7 @@ class CurrencyInputField extends StatefulWidget {
 }
 
 class _CurrencyInputFieldState extends State<CurrencyInputField> {
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController(text: '2000');
 
   @override
   Widget build(BuildContext context) {

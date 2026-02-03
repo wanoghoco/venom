@@ -4,10 +4,12 @@ import 'package:gap/gap.dart';
 class AppTextfild extends StatelessWidget {
   final TextEditingController controller;
   final String labelText;
+  final bool obscurePassword;
   const AppTextfild({
     super.key,
     required this.controller,
     required this.labelText,
+    this.obscurePassword = false,
   });
 
   @override
@@ -30,6 +32,7 @@ class AppTextfild extends StatelessWidget {
         SizedBox(
           height: 43,
           child: TextField(
+            obscureText: obscurePassword,
             controller: controller,
             decoration: InputDecoration(
               filled: true,

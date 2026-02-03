@@ -13,31 +13,35 @@ class MeScreenActionContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(minHeight: 170, maxHeight: 180),
-      padding: const EdgeInsets.all(24),
+      height: 100,
+      padding: EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(17),
         border: Border.all(
-          color: const Color(0xFF1A1A1A).withValues(alpha: 0.17),
+          color: const Color(0xFF1A1A1A).withValues(alpha: 0.1),
           width: 2,
         ),
       ),
-      child: Column(
-        children: [
-          Image.asset(image, height: 43),
-          Gap(16),
-          Text(
-            text,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 21,
-              fontWeight: FontWeight.w700,
-              color: Color(0xFF3D7FDD),
-              height: 1.3,
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Column(
+          children: [
+            Gap(4),
+            Image.asset(image, height: 43),
+            Gap(16),
+            Text(
+              text,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF3D7FDD),
+                height: 1.3,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

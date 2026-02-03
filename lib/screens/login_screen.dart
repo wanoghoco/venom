@@ -19,7 +19,7 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
   void _handleLogin() async {
     showDialog(
       barrierDismissible: false,
-      barrierColor: Colors.black.withValues(alpha: 0.8),
+      barrierColor: Colors.black.withValues(alpha: 0.4),
       context: context,
       builder: (context) => AppAnimatedLoader(),
     );
@@ -57,7 +57,7 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
             children: [
               Container(
                 width: double.infinity,
-                height: 150,
+                height: 120,
                 decoration: const BoxDecoration(
                   color: Color(0xFF267ED7),
                   borderRadius: BorderRadius.only(
@@ -68,7 +68,7 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
                 child: SafeArea(
                   child: Column(
                     children: [
-                      Gap(38),
+                      Gap(54),
                       Image.asset("assets/venom.png", height: 16),
                     ],
                   ),
@@ -89,6 +89,7 @@ class _VenmoLoginScreenState extends State<VenmoLoginScreen> {
                     ),
                     Gap(24),
                     AppTextfild(
+                      obscurePassword: true,
                       controller: _passwordController,
                       labelText: "Password",
                     ),

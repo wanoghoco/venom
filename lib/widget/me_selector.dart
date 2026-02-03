@@ -30,8 +30,8 @@ class MeSelector extends StatelessWidget {
               color: index == currentIndex
                   ? Color(0xff2C2C2E)
                   : Color(0xff1A1A1A).withValues(alpha: 0.5),
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),

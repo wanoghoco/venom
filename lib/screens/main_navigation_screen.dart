@@ -25,7 +25,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: UniqueKey(),
       body: _screens[_currentIndex],
       bottomNavigationBar: _buildBottomNavBar(),
       floatingActionButton: Container(
@@ -43,6 +42,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ],
         ),
         child: InkWell(
+          highlightColor: Colors.transparent,
+          focusColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          hoverColor: Colors.transparent,
           onTap: () {
             setState(() {
               _currentIndex = 2; // Navigate to Pay/Request
@@ -97,6 +100,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     double size = 20,
   }) {
     return InkWell(
+      highlightColor: Colors.transparent,
+      focusColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      hoverColor: Colors.transparent,
       onTap: () {
         setState(() {
           _currentIndex = index;

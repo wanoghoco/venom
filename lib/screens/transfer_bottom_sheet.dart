@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:venom/widget/app_animated_loader.dart';
 import 'package:venom/widget/bottom_sheet_selector.dart';
 import 'package:venom/widget/currency_input_filed.dart';
 import 'account_restricted_screen.dart';
@@ -13,12 +16,13 @@ class TransferBalanceBottomSheet extends StatefulWidget {
 
 class _TransferBalanceBottomSheetState
     extends State<TransferBalanceBottomSheet> {
-  int _selectedTransferType = 1;
-
+  int _selectedTransferType = 0;
+  final TextEditingController controller = TextEditingController(text: '2000');
   @override
   Widget build(BuildContext context) {
+    double amount = getValue();
     return Container(
-      height: MediaQuery.of(context).size.height * 0.9,
+      height: MediaQuery.of(context).size.height * 0.94,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -62,7 +66,13 @@ class _TransferBalanceBottomSheetState
                 children: [
                   const SizedBox(height: 32),
 
-                  CurrencyInputField(autofocus: true),
+                  CurrencyInputField(
+                    autofocus: true,
+                    onChange: () {
+                      setState(() {});
+                    },
+                    controller: controller,
+                  ),
                   const SizedBox(height: 12),
 
                   const Text(
@@ -98,7 +108,7 @@ class _TransferBalanceBottomSheetState
                             });
                           },
                           title: '1-3 biz days ',
-                          subTitle: '  NO Fee         ',
+                          subTitle: 'Estimated. NO Fee ',
                           index: 1,
                           currentIndex: _selectedTransferType,
                         ),
@@ -172,7 +182,15 @@ class _TransferBalanceBottomSheetState
           Padding(
             padding: const EdgeInsets.all(24),
             child: ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                showDialog(
+                  barrierDismissible: false,
+                  barrierColor: Colors.black.withValues(alpha: 0.4),
+                  context: context,
+                  builder: (context) => AppAnimatedLoader(),
+                );
+                await Future.delayed(Duration(seconds: 3));
+                Navigator.pop(context);
                 Navigator.pop(context);
                 Navigator.push(
                   context,
@@ -190,8 +208,10 @@ class _TransferBalanceBottomSheetState
                 ),
                 elevation: 0,
               ),
-              child: const Text(
-                'Transfer',
+              child: Text(
+                amount <= 0
+                    ? 'Transfer'
+                    : 'Transfer \$${(amount - ((amount * 1.7) / 100)).toStringAsFixed(2)}',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
               ),
             ),
@@ -199,6 +219,11 @@ class _TransferBalanceBottomSheetState
         ],
       ),
     );
+  }
+
+  getValue() {
+    double value = double.tryParse(controller.text.replaceAll(",", "")) ?? 0;
+    return value;
   }
 }
 

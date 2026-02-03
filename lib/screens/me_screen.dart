@@ -42,7 +42,7 @@ class _VenmoMeScreenState extends State<VenmoMeScreen> {
                     vertical: 20,
                   ),
                   decoration: const BoxDecoration(
-                    color: Color(0xFF267ED7),
+                    color: Color(0xff267ED7),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.elliptical(500, 60),
                       bottomRight: Radius.elliptical(500, 60),
@@ -138,7 +138,7 @@ class _VenmoMeScreenState extends State<VenmoMeScreen> {
                           Expanded(
                             child: MeScreenActionContainer(
                               image: "assets/create_group.png",
-                              text: "Create a\ngroup",
+                              text: "Create a group",
                             ),
                           ),
                           Gap(20),
@@ -152,7 +152,8 @@ class _VenmoMeScreenState extends State<VenmoMeScreen> {
                       ),
                       const SizedBox(height: 24),
                       Container(
-                        height: 61,
+                        padding: EdgeInsets.symmetric(horizontal: 2),
+                        height: 55,
 
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(32),
@@ -187,7 +188,7 @@ class _VenmoMeScreenState extends State<VenmoMeScreen> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 20),
                       MeBalanceCard(),
                       const SizedBox(height: 24),
                       CryptoCard(),

@@ -26,10 +26,11 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _screens[_currentIndex],
+
       bottomNavigationBar: _buildBottomNavBar(),
       floatingActionButton: Container(
-        width: 74,
-        height: 74,
+        width: 80,
+        height: 80,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.white.withOpacity(0.1),
@@ -62,7 +63,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   Widget _buildBottomNavBar() {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
@@ -73,8 +73,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       ),
       child: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        notchMargin: 8,
-        elevation: 0,
+        notchMargin: -4,
+        shadowColor: Colors.grey,
+        elevation: 10,
         color: Colors.white,
         child: SizedBox(
           height: 60,
@@ -83,7 +84,21 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             children: [
               _buildNavItem("home", 'Home', 0, size: 19),
               _buildNavItem("card", 'Cards', 1, size: 15),
-              const SizedBox(width: 40),
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.only(top: 28),
+
+                width: 80,
+                child: Text(
+                  "Pay/Request",
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: Color(0xFF1E5FD7),
+
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
               _buildNavItem("crypto", 'Crypto', 3, size: 26),
               _buildNavItem("me", 'Me', 4, size: 26),
             ],

@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 
 class CurrencyInputField extends StatefulWidget {
   final bool autofocus;
-  const CurrencyInputField({super.key, this.autofocus = false});
+  final Function onChange;
+  final TextEditingController controller;
+  const CurrencyInputField({
+    super.key,
+    this.autofocus = false,
+    required this.onChange,
+    required this.controller,
+  });
 
   @override
   State<CurrencyInputField> createState() => _CurrencyInputFieldState();
 }
 
 class _CurrencyInputFieldState extends State<CurrencyInputField> {
-  final TextEditingController _controller = TextEditingController(text: '2000');
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,8 +24,17 @@ class _CurrencyInputFieldState extends State<CurrencyInputField> {
       children: [
         IntrinsicWidth(
           child: TextField(
-            autofocus: widget.autofocus,
-            controller: _controller,
+            onChanged: (val) {
+              widget.onChange();
+            },
+            cursorHeight: 32,
+            cursorColor: Colors.black,
+            autocorrect: false,
+            enableInteractiveSelection: false,
+            autofocus: false,
+            enableSuggestions: false,
+
+            controller: widget.controller,
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
             style: const TextStyle(
@@ -45,7 +59,10 @@ class _CurrencyInputFieldState extends State<CurrencyInputField> {
               suffixIcon: IconButton(
                 highlightColor: Colors.transparent,
                 splashColor: Colors.transparent,
-                onPressed: () => _controller.clear(),
+                onPressed: () {
+                  widget.controller.clear();
+                  widget.onChange();
+                },
                 icon: const Icon(Icons.cancel, color: Colors.black26, size: 24),
               ),
 

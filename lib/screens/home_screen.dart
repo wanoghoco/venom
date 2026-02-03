@@ -80,14 +80,15 @@ class VenmoHomeScreen extends StatelessWidget {
                   ),
                   _buildTransactionItem(
                     name: 'Lisa Forsyth paid you',
-                    time: '8',
+                    time: '8d',
                     description: 'Mark Adams',
                     amount: '+\$500.00',
                     isPositive: true,
                   ),
                   _buildTransactionItem(
-                    name: 'Judy Grey paid you  +2000',
+                    name: 'Judy Grey paid you',
                     time: '8d',
+                    initial: "JG",
                     description: 'Documents',
                     amount: '+\$2000.00',
                     isPositive: true,

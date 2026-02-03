@@ -17,9 +17,10 @@ class TransferBalanceBottomSheet extends StatefulWidget {
 class _TransferBalanceBottomSheetState
     extends State<TransferBalanceBottomSheet> {
   int _selectedTransferType = 0;
-
+  final TextEditingController controller = TextEditingController(text: '2000');
   @override
   Widget build(BuildContext context) {
+    double amount = getValue();
     return Container(
       height: MediaQuery.of(context).size.height * 0.94,
       decoration: const BoxDecoration(
@@ -65,7 +66,13 @@ class _TransferBalanceBottomSheetState
                 children: [
                   const SizedBox(height: 32),
 
-                  CurrencyInputField(autofocus: true),
+                  CurrencyInputField(
+                    autofocus: true,
+                    onChange: () {
+                      setState(() {});
+                    },
+                    controller: controller,
+                  ),
                   const SizedBox(height: 12),
 
                   const Text(
@@ -201,8 +208,10 @@ class _TransferBalanceBottomSheetState
                 ),
                 elevation: 0,
               ),
-              child: const Text(
-                'Transfer',
+              child: Text(
+                amount <= 0
+                    ? 'Transfer'
+                    : 'Transfer \$${(amount - ((amount * 1.7) / 100)).toStringAsFixed(2)}',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
               ),
             ),
@@ -210,6 +219,11 @@ class _TransferBalanceBottomSheetState
         ],
       ),
     );
+  }
+
+  getValue() {
+    double value = double.tryParse(controller.text.replaceAll(",", "")) ?? 0;
+    return value;
   }
 }
 
